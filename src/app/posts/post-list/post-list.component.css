@@ -1,0 +1,14 @@
+.card{
+    margin-top: 20px;
+
+}
+.thumbnail{
+    height: 100%;
+
+}
+.card-img{
+    width: auto;
+}
+.card-content{
+    text-align: center;
+}
