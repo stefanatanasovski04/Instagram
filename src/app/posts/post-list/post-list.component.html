@@ -1,17 +1,38 @@
 <div class="container">
-    <div class="row">
-        <div class="col-6 offset-3">
-            <div class="card">
-                <div class="row">
-                    <div class="card-img col-6">
-                        <img class="thumbnail" [src]='imageUrl'>
-                    </div>
-                    <div class="card-content col-6">
-                        <h4> {{content}} </h4>
-                        <button class="btn btn-outline-danger">Edit</button>
+
+    <div *ngFor="let post of posts" class="card mb-3 col-6 offset-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img [src]="post.thumbnailUrl" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{post.title | uppercase}}</h5>
+              <button class="btn btn-outline-danger">View</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- <div>
+        <div class="row" *ngFor="let post of posts">
+            <div class="col-6 offset-3">
+                <div class="card">
+                    <div class="row">
+                        <div class="card-img col-lg-4 col-sm-12">
+                            <img class="thumbnail" [src]='post.thumbnailUrl'>
+                        </div>
+                        <div class="card-content col-8">
+                            <h4> {{post.title  | uppercase }} </h4>
+                            <hr>
+                            <button class="btn btn-outline-danger">View</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
 </div>

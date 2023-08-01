@@ -1,14 +1,15 @@
 .card{
     margin-top: 20px;
+    border: 2px solid rgb(116, 85, 85);
 
-}
-.thumbnail{
-    height: 100%;
+ }
+/*.thumbnail{
+    widht: 100%;
 
 }
 .card-img{
     width: auto;
 }
 .card-content{
-    text-align: center;
-}
+    text-align: center; */
+/* } */
