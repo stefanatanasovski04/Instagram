@@ -1,1 +1,23 @@
-<p>post-detail works!</p>
+<div class="container">
+    <div class="post-holder mt-5 col-6 offset-3 p-2 mb-2">
+        <div class="back-buttone  p-1 ">
+            <a [routerLink]="['/posts']" class="btn btn-outline-success"><span class="bi bi-arrow-return-left"></span>Back To Posts</a>
+
+        </div>
+        <div class="card-title p-4">
+            <h3> {{post?.title | uppercase}}</h3>
+        </div>
+        <div class="card-img p-4">
+            <img [src]="post?.url">
+        </div>
+        <div class="row p-2">
+            <div class="edit-button col-2 ">
+                <a id="edt" href="#" class="btn btn-warning">Edit</a>
+            </div>
+            <div class="delete-button col-2 offset-lg-8 offset-sm-4">
+                <a id="del" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+
+    </div>
+</div>

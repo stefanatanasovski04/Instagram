@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
-import { Post } from '../posts';
-import { Observable, catchError, tap, throwError } from 'rxjs';
-import { Album } from '../albums';
+import { Post } from '../models/posts';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
+import { Album } from '../models/albums';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,14 @@ export class PostService {
     return this.http.get<Post[]>(this.postUrl)
       .pipe(
         tap(data =>JSON.stringify(data)),
+        catchError(this.handleError)
       )
+  }
+
+  getPost(id: number) : Observable<Post | undefined>{
+    return this.getPosts().pipe(
+      map( (posts: Post[]) => posts.find(p => p.id === id) )
+    );
   }
 
   getAlbums() : Observable<Album[]>{
@@ -26,6 +33,19 @@ export class PostService {
       .pipe(
         tap(data => console.log('Albums',JSON.stringify(data)))
       )
+  }
+
+
+  private handleError(err: HttpErrorResponse): Observable<never> {
+
+    let errorMessage = '';
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error occurred: ${err.error.message}`;
+    } else {
+      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(() => errorMessage);
   }
 
 

@@ -1,0 +1,25 @@
+.post-holder {
+    border-radius: 25px;
+    border: 2px solid #616d67;
+    padding: 20px;
+    background-color: rgb(236, 228, 217);
+}
+img {
+  max-width: 100%;
+}
+.scnd-buttons {
+  grid-column-end: auto;
+}
+#delete {
+  margin-left: 33%;
+}
+#edit {
+  margin-left: 33%;
+}
+#del{
+    width: 100%;
+}
+
+#edt{
+    width: 100%;
+}

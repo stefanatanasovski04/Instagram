@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from 'src/app/posts';
+import { Post } from 'src/app/models/posts';
 import { PostService } from '../post.service';
 import { NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { Album } from 'src/app/albums';
+import { Album } from 'src/app/models/albums';
 
 @Component({
   selector: 'app-post-list',

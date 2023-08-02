@@ -1,16 +1,29 @@
 <div class="container">
+  
+  
+  <!-- <div *ngFor="let post of posts" class="card-holder col-8 offset-2">
+     <div class="card-img col-lg-6"> 
+      <img  [src]="post.thumbnailUrl" class="img-fluid rounded-start" alt="...">
+     </div>
+    <div class="card-content">
+      <h5 class="card-title">{{post.title | uppercase}}</h5>
+      <a [routerLink]="['/posts',post.id]" class="btn btn-success">View</a>
+    </div>
+  </div> -->
 
-    <div *ngFor="let post of posts" class="card mb-3 col-6 offset-3" style="max-width: 540px;">
+    <div *ngFor="let post of posts" class="card-holder col-6 offset-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
             <img [src]="post.thumbnailUrl" class="img-fluid rounded-start" alt="...">
           </div>
-          <div class="col-md-8">
+          <div class="col-md-6">
             <div class="card-body">
-              <h5 class="card-title">{{post.title | uppercase}}</h5>
-              <button class="btn btn-outline-danger">View</button>
-              
+              <h5 class="card-title">{{post.title | uppercase}}</h5>              
             </div>
+          </div>
+          <div class="col-2 dugme">
+            <a [routerLink]="['/posts',post.id]" class="btn btn-outline-danger">View</a>
+
           </div>
         </div>
       </div>

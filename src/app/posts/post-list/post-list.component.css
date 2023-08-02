@@ -1,8 +1,23 @@
-.card{
+.card-holder{
     margin-top: 20px;
-    border: 2px solid rgb(116, 85, 85);
+    /* border: 2px solid rgb(116, 85, 85); */
+    background-color: azure;
 
  }
+
+ .card-body{
+    display: flex;
+ }
+
+ img {
+    max-width: 100%;
+  }
+
+  .dugme{
+    align-content: center;
+    vertical-align: center;
+    
+  }
 /*.thumbnail{
     widht: 100%;
 
