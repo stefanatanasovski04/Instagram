@@ -10,14 +10,23 @@
         <div class="card-img p-4">
             <img [src]="post?.url">
         </div>
-        <div class="row p-2">
-            <div class="edit-button col-2 ">
-                <a id="edt" href="#" class="btn btn-warning">Edit</a>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+              <button class="btn btn-outline-danger mr-3"
+                      style="width:80px"
+                     >
+                <i class="fa fa-chevron-left"></i> Delete
+              </button>
+              <a class="btn btn-outline-primary m-3"
+                      style="width:80px"
+                      (click)="onEdit()">
+                Edit
+            </a>
             </div>
-            <div class="delete-button col-2 offset-lg-8 offset-sm-4">
-                <a id="del" class="btn btn-danger">Delete</a>
-            </div>
-        </div>
+          </div>
+
+          
 
     </div>
 </div>

@@ -35,6 +35,12 @@ export class PostService {
       )
   }
 
+  getAlbum(id: number) : Observable<Album | undefined>{
+    return this.getAlbums().pipe(
+      map( (albums: Album[]) => albums.find(p => p.id === id) )
+    );
+  }
+
 
   private handleError(err: HttpErrorResponse): Observable<never> {
 

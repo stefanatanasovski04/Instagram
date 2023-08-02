@@ -1,0 +1,88 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PostService } from '../post.service';
+import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Post } from 'src/app/models/posts';
+
+@Component({
+  selector: 'app-post-edit',
+  templateUrl: './post-edit.component.html',
+  styleUrls: ['./post-edit.component.css']
+})
+export class PostEditComponent implements OnInit{
+
+  pageTitle:string = 'Edit Product';
+
+  postForm!: FormGroup;
+  private sub!: Subscription;
+  errorMessage: string = '';
+  post!: Post | undefined;
+
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private postService: PostService,
+    private fb: FormBuilder
+  ){}
+
+
+  ngOnInit(): void {
+    this.postForm = this.fb.group({
+      albumId: 1,
+      title: '',
+      url: '',
+      thumbnailUrl: ''
+    });
+
+    this.sub = this.route.paramMap.subscribe(
+      params => {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        this.getPost(id);
+      }
+    )
+
+  }
+
+  getPost(id: number): void {
+    this.postService.getPost(id).subscribe({
+      next: (post) => this.displayPost(post),
+      error: err => this.errorMessage = err
+    })
+  }
+
+
+  displayPost(post: Post | undefined): void {
+    if (this.postForm) {
+      this.postForm.reset();
+    }
+    this.post = post;
+
+    if (this.post?.id === 0) {
+      this.pageTitle = 'Add Product';
+    } else {
+      this.pageTitle = `Edit Product: ${this.post?.title}`;
+    }
+
+    // Update the data on the form
+    this.postForm.patchValue({
+      albumId: this.post?.albumId,
+      title: this.post?.title,
+      url: this.post?.url,
+      thumbnailUrl: this.post?.thumbnailUrl
+    });
+  }
+
+  onCancel(){
+    console.log('Cancel');
+  }
+
+  saveProduct(){
+    console.log('Post Saved!!');
+  }
+
+  
+
+
+}
