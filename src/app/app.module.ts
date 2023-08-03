@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PostModule } from './posts/post.module';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgxPaginationModule,
     PostModule,
     RouterModule.forRoot([
       {path:'', redirectTo:'posts',pathMatch:'full'},

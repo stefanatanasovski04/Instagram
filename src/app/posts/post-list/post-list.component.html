@@ -10,39 +10,26 @@
       <a [routerLink]="['/posts',post.id]" class="btn btn-success">View</a>
     </div>
   </div> -->
-
-  <div *ngFor="let post of posts" class="card-holder col-12">
-    <div class="row g-0 list-row">
-      <div class="col-lg-4 mb-2 mt-2">
-        <img [src]="post.thumbnailUrl" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-lg-6 title-wrapper">
-          <h5 class="card-title">{{post.title | uppercase}}</h5>
-      </div>
-      <div class="col-lg-2 dugme mt-4 mb-2">
-        <a [routerLink]="['/posts',post.id]" class="btn btn-outline-danger btn-wrapper" style="width: 90px; height: 90px;"><i>View</i></a>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- <div>
-        <div class="row" *ngFor="let post of posts">
-            <div class="col-6 offset-3">
-                <div class="card">
-                    <div class="row">
-                        <div class="card-img col-lg-4 col-sm-12">
-                            <img class="thumbnail" [src]='post.thumbnailUrl'>
-                        </div>
-                        <div class="card-content col-8">
-                            <h4> {{post.title  | uppercase }} </h4>
-                            <hr>
-                            <button class="btn btn-outline-danger">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <ul class="postList">
+    <li  *ngFor="let post of posts | paginate :{itemsPerPage:itemsPerPage, currentPage: p}">
+      <div class="card-holder col-12">
+        <div class="row g-0 list-row">
+          <div class="col-lg-4 mb-2 mt-2">
+            <img [src]="post.thumbnailUrl" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-lg-6 title-wrapper">
+            <h5 class="card-title">{{post.title | uppercase}}</h5>
+          </div>
+          <div class="col-lg-2 dugme mt-4 mb-2">
+            <a [routerLink]="['/posts',post.id]" class="btn btn-outline-danger btn-wrapper"
+              style="width: 90px; height: 90px;"><i>View</i></a>
+          </div>
         </div>
-    </div> -->
-
+      </div>
+    </li>
+  </ul>
+  <!--  -->
+  <div class="mt-5 py-5 flex justify-center items-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
 </div>

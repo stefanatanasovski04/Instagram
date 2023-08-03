@@ -113,6 +113,7 @@ export class PostEditComponent implements OnInit {
 
   onCancel() {
     console.log('Cancel');
+    this.router.navigate(['/posts'])
   }
 
   saveProduct() {

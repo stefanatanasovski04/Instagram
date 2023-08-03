@@ -5,6 +5,8 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { PostEditComponent } from './post-edit/post-edit.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+
     RouterModule.forChild([
       {path: 'posts', component: PostListComponent},
       {path: 'posts/:id', component: PostDetailComponent},

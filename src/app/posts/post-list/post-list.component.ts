@@ -15,6 +15,9 @@ export class PostListComponent implements OnInit{
  albums: Album[] = []; 
  sub!: Subscription;
  errorMessage!: string;
+ p: number = 1;
+ itemsPerPage: number = 10;
+ totalPosts!: any;
 
   constructor(private postService: PostService){}
 
@@ -22,7 +25,11 @@ export class PostListComponent implements OnInit{
    
     //get the posts
     this.sub = this.postService.getPosts().subscribe({
-    next: posts => this.posts = posts,
+    next: posts => {
+      this.posts = posts,
+      this.totalPosts = posts.length;
+      console.log(this.totalPosts)
+    },
     error: err => this.errorMessage = err,
    });
 

@@ -1,52 +1,44 @@
-.card-holder{
-    margin-top: 20px;
-    border-radius: 25px;
-    border: 2px solid #616d67;
-    padding: 20px;
-    background-color: rgb(236, 228, 217);
- 
-    /* display: inline-flex;
+.card-holder {
+  margin-top: 20px;
+  border-radius: 25px;
+  border: 2px solid #616d67;
+  padding: 20px;
+  background-color: rgb(236, 228, 217);
+
+  /* display: inline-flex;
 
 
     /* text-align: center; */
- }
-.list-row{
+}
+.postList {
+  list-style-type: none;
+}
+.list-row {
   text-align: center;
 }
- .card-body{
-    display: flex;
-    text-align: center;
-    justify-content: center;
-
- }
-
- img {
-    max-width: 100%;
-  }
-
-  .dugme .card-title{
-    text-align: center;
-    justify-content: center;
-    
-  }
-  .btn-wrapper{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-  }
-  .title-wrapper{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-  }
-/*.thumbnail{
-    widht: 100%;
-
+.card-body {
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }
-.card-img{
-    width: auto;
+
+img {
+  max-width: 100%;
 }
-.card-content{
-    text-align: center; */
-/* } */
+
+.dugme .card-title {
+  text-align: center;
+  justify-content: center;
+}
+.btn-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.title-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+

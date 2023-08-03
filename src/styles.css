@@ -2,3 +2,19 @@
 body{
     /* background-image: url('https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); */
 }
+
+    .ngx-pagination {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    /* .ngx-pagination li{
+      width: 35px;
+      height: 35px;
+      border-radius: 50% !important;
+      background: #f8f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    } */
+  
