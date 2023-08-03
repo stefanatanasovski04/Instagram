@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http'
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
 import { Post } from '../models/posts';
-import { Observable, catchError, map, tap, throwError } from 'rxjs';
+import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
 import { Album } from '../models/albums';
 
 @Injectable({
@@ -23,8 +23,14 @@ export class PostService {
   }
 
   getPost(id: number) : Observable<Post | undefined>{
-    return this.getPosts().pipe(
-      map( (posts: Post[]) => posts.find(p => p.id === id) )
+
+    if(id === 0){
+      return of(this.initializePost());
+    }
+    const url = `${this.postUrl}/${id}`
+    return this.http.get<Post>(url).pipe(
+      tap( data => console.log('getPost: ' + JSON.stringify(data))),
+      catchError(this.handleError)
     );
   }
 
@@ -41,6 +47,39 @@ export class PostService {
     );
   }
 
+  createPost(post: Post): Observable<Post> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    post.id = null;
+    return this.http.post<Post>(this.postUrl, post, { headers })
+      .pipe(
+        tap(data => console.log('createPost: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  deletePost(id: number): Observable<{}> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = this.postUrl + '/' + id;
+    console.log("Delete URL: ", url)
+    return this.http.delete<Post>(url, { headers })
+      .pipe(
+        tap(data => console.log('deletePost: ' + id)),
+        catchError(this.handleError)
+      );
+  }
+
+  updatePost(post: Post): Observable<Post> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.postUrl}/${post.id}`;
+    return this.http.put<Post>(url, post, { headers })
+      .pipe(
+        tap(() => console.log('updatePost: ' + post.id)),
+        // Return the product on an update
+        map(() => post),
+        catchError(this.handleError)
+      );
+  }
+
 
   private handleError(err: HttpErrorResponse): Observable<never> {
 
@@ -52,6 +91,16 @@ export class PostService {
     }
     console.error(errorMessage);
     return throwError(() => errorMessage);
+  }
+
+  private initializePost() : Post{
+    return{
+      id: 0,
+      albumId: 0,
+      title: '',
+      url: '',
+      thumbnailUrl: ''
+    }
   }
 
 

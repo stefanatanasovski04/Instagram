@@ -1,6 +1,7 @@
 <div class="container">
+    <h2> {{pageTitle}}</h2>
     <div class="card-body mt-4">
-        <form novalidate [formGroup]="postForm" (ngSubmit)="saveProduct()">
+        <form novalidate [formGroup]="postForm" (ngSubmit)="savePost()">
             <div class="form-group">
                 <label>Album Id:</label>
                 <input class="form-control" id="postAlbumId" type="text" formControlName="albumId">

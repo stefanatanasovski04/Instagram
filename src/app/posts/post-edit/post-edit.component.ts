@@ -4,15 +4,16 @@ import { PostService } from '../post.service';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/posts';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.css']
 })
-export class PostEditComponent implements OnInit{
+export class PostEditComponent implements OnInit {
 
-  pageTitle:string = 'Edit Product';
+  pageTitle: string = 'Edit Post';
 
   postForm!: FormGroup;
   private sub!: Subscription;
@@ -25,7 +26,7 @@ export class PostEditComponent implements OnInit{
     private router: Router,
     private postService: PostService,
     private fb: FormBuilder
-  ){}
+  ) { }
 
 
   ngOnInit(): void {
@@ -53,6 +54,8 @@ export class PostEditComponent implements OnInit{
   }
 
 
+
+
   displayPost(post: Post | undefined): void {
     if (this.postForm) {
       this.postForm.reset();
@@ -60,9 +63,9 @@ export class PostEditComponent implements OnInit{
     this.post = post;
 
     if (this.post?.id === 0) {
-      this.pageTitle = 'Add Product';
+      this.pageTitle = 'Add Post';
     } else {
-      this.pageTitle = `Edit Product: ${this.post?.title}`;
+      this.pageTitle = `Edit Post: ${this.post?.title}`;
     }
 
     // Update the data on the form
@@ -74,15 +77,49 @@ export class PostEditComponent implements OnInit{
     });
   }
 
-  onCancel(){
+
+  savePost(): void {
+    if (this.postForm.valid) {
+      if (this.postForm.dirty) {
+        const p = { ...this.post, ...this.postForm.value };
+
+        if (p.id === 0) {
+          this.postService.createPost(p).subscribe({
+            next: x => {
+              console.log(x);
+              return this.onSaveComplete();
+            },
+            error: err => this.errorMessage = err
+          });
+        }else {
+          this.postService.updatePost(p)
+            .subscribe({
+              next: () => this.onSaveComplete(),
+              error: err => this.errorMessage = err
+            })
+        }
+      }else{
+        this.onSaveComplete();
+      }
+    }else{
+      this.errorMessage = 'Correct the errors!'
+    }
+  }
+
+  onSaveComplete(): void {
+    this.postForm.reset();
+    this.router.navigate(['/posts']);
+  }
+
+  onCancel() {
     console.log('Cancel');
   }
 
-  saveProduct(){
+  saveProduct() {
     console.log('Post Saved!!');
   }
 
-  
+
 
 
 }

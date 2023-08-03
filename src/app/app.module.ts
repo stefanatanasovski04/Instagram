@@ -17,8 +17,8 @@ import { PostModule } from './posts/post.module';
     HttpClientModule,
     PostModule,
     RouterModule.forRoot([
-      // {path:'', redirectTo:'posts',pathMatch:'full'},
-      // {path:'**', redirectTo:'posts', pathMatch:'full'}
+      {path:'', redirectTo:'posts',pathMatch:'full'},
+      {path:'**', redirectTo:'posts', pathMatch:'full'}
     ]),
   ],
   providers: [],

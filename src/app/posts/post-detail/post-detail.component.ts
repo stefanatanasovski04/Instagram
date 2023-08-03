@@ -38,6 +38,25 @@ export class PostDetailComponent implements OnInit {
     });
   }
 
+  
+  deletePost(): void {
+    if(this.post?.id === 0){
+      this.onSaveComplete();
+    }else if(this.post?.id){
+      if(confirm(`Are you sure that you want to delete this post: ${this.post.title}?`)){
+        this.postService.deletePost(this.post.id)
+        .subscribe({
+          next: () => this.onSaveComplete(),
+          error: err => this.errorMessage = err
+        })
+      }
+    }
+  }
+
+  onSaveComplete(): void{
+    this.roter.navigate(['/posts']);
+  }
+
   onBack(): void{
     this.roter.navigate(['/posts']);
   }
