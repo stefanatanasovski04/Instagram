@@ -28,7 +28,6 @@ export class PostListComponent implements OnInit{
     next: posts => {
       this.posts = posts,
       this.totalPosts = posts.length;
-      console.log(this.totalPosts)
     },
     error: err => this.errorMessage = err,
    });
