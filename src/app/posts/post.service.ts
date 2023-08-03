@@ -50,6 +50,7 @@ export class PostService {
   createPost(post: Post): Observable<Post> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     post.id = null;
+    console.log('Post to: ' + this.postUrl)
     return this.http.post<Post>(this.postUrl, post, { headers })
       .pipe(
         tap(data => console.log('createPost: ' + JSON.stringify(data))),
@@ -71,6 +72,7 @@ export class PostService {
   updatePost(post: Post): Observable<Post> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.postUrl}/${post.id}`;
+    console.log("Update URL: ", url)
     return this.http.put<Post>(url, post, { headers })
       .pipe(
         tap(() => console.log('updatePost: ' + post.id)),
