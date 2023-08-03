@@ -98,7 +98,7 @@ export class PostService {
   private initializePost() : Post{
     return{
       id: 0,
-      albumId: 0,
+      albumId: 1,
       title: '',
       url: '',
       thumbnailUrl: ''

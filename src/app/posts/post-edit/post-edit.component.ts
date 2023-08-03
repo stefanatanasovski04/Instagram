@@ -31,10 +31,10 @@ export class PostEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.postForm = this.fb.group({
-      albumId: 1,
-      title: '',
-      url: '',
-      thumbnailUrl: ''
+      albumId:[ 1,Validators.required],
+      title: [ '',Validators.required],
+      url: [ '',Validators.required],
+      thumbnailUrl: [ '',Validators.required]
     });
 
     this.sub = this.route.paramMap.subscribe(
@@ -43,7 +43,22 @@ export class PostEditComponent implements OnInit {
         this.getPost(id);
       }
     )
+  }
+  
+  get albumId(){
+    return this.postForm.get('albumId');
+  }
 
+  get title(){
+    return this.postForm.get('title');
+  }
+
+  get url(){
+    return this.postForm.get('url');
+  }
+
+  get thumbnailUrl(){
+    return this.postForm.get('thumbnailUrl');
   }
 
   getPost(id: number): void {
@@ -52,6 +67,8 @@ export class PostEditComponent implements OnInit {
       error: err => this.errorMessage = err
     })
   }
+
+  
 
 
 
@@ -79,6 +96,7 @@ export class PostEditComponent implements OnInit {
 
 
   savePost(): void {
+    console.log(this.postForm)
     if (this.postForm.valid) {
       if (this.postForm.dirty) {
         const p = { ...this.post, ...this.postForm.value };
