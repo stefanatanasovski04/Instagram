@@ -76,7 +76,7 @@ export class PostService {
     return this.http.put<Post>(url, post, { headers })
       .pipe(
         tap(() => console.log('updatePost: ' + post.id)),
-        // Return the product on an update
+        // Return the post on an update
         map(() => post),
         catchError(this.handleError)
       );
