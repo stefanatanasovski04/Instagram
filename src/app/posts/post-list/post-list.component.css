@@ -4,12 +4,13 @@
   border: 2px solid #616d67;
   padding: 20px;
   background-color: rgb(236, 228, 217);
-
-  /* display: inline-flex;
-
-
-    /* text-align: center; */
+  font-family: 'Times New Roman', serif;
 }
+/* .pagination-wraper{
+  /* border-radius: 25px;
+  border: 2px solid #616d67; */
+  /* background-color: rgb(236, 228, 217); }*/
+
 .postList {
   list-style-type: none;
 }

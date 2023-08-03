@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    /* background-image: url('https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); */
-}
+  background: rgb(200,151,84);
+  background: linear-gradient(90deg, rgba(200,151,84,1) 22%, rgba(157,94,182,1) 100%);
+  }
 
     .ngx-pagination {
       display: flex !important;
